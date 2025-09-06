@@ -24,5 +24,34 @@
         "y": 264
       }
     }
+  },
+  {
+    "id": "uptime-monitoring",
+    "config": {
+      "steps/metrics.step.ts": {
+        "x": -353,
+        "y": 619
+      },
+      "steps/history.step.ts": {
+        "x": -720,
+        "y": 619
+      },
+      "steps/health.step.ts": {
+        "x": -1054,
+        "y": 624
+      },
+      "steps/cron.step.ts": {
+        "x": 60,
+        "y": 652
+      },
+      "steps/checker.step.ts": {
+        "x": 350,
+        "y": 648
+      },
+      "steps/alerter.step.ts": {
+        "x": 700,
+        "y": 648
+      }
+    }
   }
 ]

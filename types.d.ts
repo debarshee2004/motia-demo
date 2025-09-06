@@ -12,9 +12,11 @@ declare module 'motia' {
   }
 
   interface Handlers {
-    'StateAuditJob': CronHandler<{ topic: 'notification'; data: { templateId: string; email: string; templateData: Record<string, unknown> } }>
-    'ProcessFoodOrder': EventHandler<{ email: string; quantity: number; petId: number }, { topic: 'notification'; data: { templateId: string; email: string; templateData: Record<string, unknown> } }>
-    'Notification': EventHandler<{ templateId: string; email: string; templateData: Record<string, unknown> }, never>
-    'ApiTrigger': ApiRouteHandler<{ pet: { name: string; photoUrl: string }; foodOrder?: { id: string; quantity: number } }, ApiResponse<200, { id: number; name: string; photoUrl: string }>, { topic: 'process-food-order'; data: { email: string; quantity: number; petId: number } }>
+    'MetricsEndpoint': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { system: { totalSites: number; upSites: number; downSites: number; overallUptimePercentage: number; averageResponseTime: number; lastUpdate: number }; sites: Record<string, { url: string; averageResponseTime: number; uptimePercentage: number; totalChecks: number; successfulChecks: number; lastDownTime?: string; lastUpTime?: string; consecutiveFailures: number; maxResponseTime: number; minResponseTime: number }>; timestamp: string }>, never>
+    'SiteHistory': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { url: string; history: { url: string; status: 'UP' | 'DOWN'; code: unknown; responseTime: number; checkedAt: string; error: unknown }[]; total: number; timestamp: string }> | ApiResponse<404, { error: string; message: string }>, never>
+    'HealthCheck': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { status: 'ok' | 'degraded' | 'down'; sitesConfigured: number; lastKnown: Record<string, unknown>; now: string; metrics?: { totalUptime: number; averageResponseTime: number; activeAlerts: number }; version?: string; uptime?: number }>, never>
+    'UptimeCronTrigger': CronHandler<{ topic: 'check.requested'; data: { url: string } }>
+    'WebsiteChecker': EventHandler<{ url: string }, { topic: 'check.result'; data: { url: string; status: 'UP' | 'DOWN'; code: unknown; responseTime: number; checkedAt: string; error: unknown } }>
+    'TerminalAlerter': EventHandler<{ url: string; status: 'UP' | 'DOWN'; code: unknown; responseTime: number; checkedAt: string; error: unknown }, never>
   }
 }
