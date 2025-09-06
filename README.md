@@ -2,6 +2,11 @@
 
 A comprehensive uptime monitoring system built with **Motia** - demonstrating the power of unified backend development through the innovative **stepped approach**.
 
+<img width="1920" height="1080" alt="Screenshot (713)" src="https://github.com/user-attachments/assets/430b3598-8e28-425a-a139-701b0120527b" />
+
+<img width="1920" height="1080" alt="Screenshot (714)" src="https://github.com/user-attachments/assets/4d9da6fd-70af-4b4d-a6f0-60395bea3aa9" />
+
+
 ## 🚀 What is Motia?
 
 Motia is a revolutionary framework that unifies what traditionally required 5+ different tools: APIs, background jobs, workflows, real-time streams, AI agents, and state management - all with built-in observability and multi-language support.
